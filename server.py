@@ -7,7 +7,7 @@ from rq.exceptions import NoSuchJobError
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
-from images_downloader import demo_task
+from worker import download_images_task
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
 task_queue = Queue(
@@ -23,7 +23,7 @@ def index():
     if request.method == 'GET':
         return render_template("index.html",)
     elif request.method == 'POST':
-        job = task_queue.enqueue(demo_task, (request.form['text']))
+        job = task_queue.enqueue(download_images_task, (request.form['text']))
         return redirect(f"/result/{job.id}", code=302)
 
 
