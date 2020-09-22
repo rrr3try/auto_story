@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minimal Template</title>
+	<link rel="stylesheet" type="text/css" href="/static/styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container">
+		<div class="hero">
+			<h1 class="name"><strong>Story</strong>creator</h1>
+		</div>
+		<div class="hero">
+			<form method="post">
+				<input type="text" name="text" placeholder="Ваш текст">
+				<button type="submit">make story</button>
+			</form>
+		</div>
+	</div>
+
+
+	<div class="container cards">
+		{% for story in stories %}
+		
+		<div class="card">
+			<div class="skill-level">
+			</div>
+			<div class="skill-meta">
+				<h3>SOME TEXT</h3>
+				<span>IMAGE etc</span>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<footer class="container">
+	</footer>
+
+</body>
+</html>
