@@ -31,17 +31,19 @@ def clean_text(text):
         if token.pos_ in pos_tags and not token.is_stop:
             cleaned.append(token.text)
     if len(cleaned) > 0:
-        return " ".join(cleaned)
+        return cleaned
     else:
-        return text
+        return None
 
 
 def download_images_task(text):
     global downloader
-    results = downloader.download_images([clean_text(text)])
+    keywords = clean_text(text)
+    if keywords is not None:
+        results = downloader.download_images([" ".join(keywords)])
     files = []
     for image in results.keyword_results:
         if len(image.keyword) > 0:
             for page in image.page_results:
                 files.extend([r.img_path for r in page.img_url_results])
-    return text, files
+    return text, keywords, files
