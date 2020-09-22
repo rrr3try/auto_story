@@ -1,5 +1,3 @@
-from time import sleep
-
 import redis
 from flask import Flask, request, jsonify, render_template
 from rq import Queue
@@ -32,17 +30,12 @@ def result(task_id):
     try:
         job = task_queue.fetch_job(task_id)
         if job.is_finished:
-
-            return jsonify(job.result)
+            text, images = job.result
+            return render_template("index.html", images=images, text=text)
         else:
-            return jsonify({"id": task_id,
-                            "status": "processing",
-                            "result": f"/results/{task_id}"}), 202
+            return render_template("index.html", processing=True), 202
     except (NoSuchJobError, AttributeError):
         abort(404)
-
-    return render_template("index.html", stories=[{"image_url": "...", "text": "some text"},
-                                                  {"image_url": "...", "text": "some text"}])
 
 
 if __name__ == '__main__':
