@@ -213,6 +213,7 @@ h3 {
     transform: translate(-50%, -50%);
     text-align: center;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: black 0px 0px 10px;
 }
 
 
@@ -247,7 +248,7 @@ h3 {
 .skill-meta h3 {
 	font-size: 128%;
 	font-weight: 800;
-	color: #5B6A9A;
+	color: #FBFAFA;
 	margin-bottom: 5px;
 }
 
